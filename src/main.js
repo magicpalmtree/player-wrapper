@@ -60,56 +60,56 @@ import './style.css'
         var dynamicParams = getDynamicTextParameters();
         // Events comming from inside the player iframes
         console.log('addEventListener handleIncomingPlayerMsg');
-        //window.addEventListener('message', handleIncomingPlayerMsg);
+        window.addEventListener('message', handleIncomingPlayerMsg);
 
-        // //TODO clean this up from app side as well
-        // function handleIncomingPlayerMsg(e) {
-        //     console.log('handleIncomingPlayerMsg')
-        //     // make sure event is from our player(s) and not some other iframe
-        //     // all events from player app should have a "from" property
-        //     if (typeof e.data === 'object' && e.data.from === ICTR_PLAYER) {
-        //         console.log('received event from app iframe .......', e.data)
+        //TODO clean this up from app side as well
+        function handleIncomingPlayerMsg(e) {
+            console.log('handleIncomingPlayerMsg')
+            // make sure event is from our player(s) and not some other iframe
+            // all events from player app should have a "from" property
+            if (typeof e.data === 'object' && e.data.from === ICTR_PLAYER) {
+                console.log('received event from app iframe .......', e.data)
 
-        //         var { eventType, embeddingId } = e.data;
+                var { eventType, embeddingId } = e.data;
 
-        //         // fired when player app mounts and is ready 🚀
-        //         if (eventType === PLAYER_EVENTS.READY) {
-        //             framesManager.sendInitInfo({
-        //                 dynamicParams,
-        //                 // fullScreenSupported
-        //             });
-        //         }
-        //         // only present after initial connection between window and app frame
-        //         if (embeddingId) {
-        //             var frame = framesManager.getFrameById(embeddingId);
-        //             if (frame) {
-        //                 // player app toggled FS
-        //                 if (eventType === PLAYER_EVENTS.TOGGLE_FS) {
-        //                     if (isFullScreenEnabled) toggleFullScreen(frame);
-        //                     else toggleFSOverlay(frame);
-        //                 }
-        //                 // listens to actuall FS changes and notifies player to change controls and relevant updates
-        //                 // fscreen.onfullscreenchange = createFrameFSHandler(
-        //                     //     frame
-        //                     // );
+                // fired when player app mounts and is ready 🚀
+                if (eventType === PLAYER_EVENTS.READY) {
+                    framesManager.sendInitInfo({
+                        dynamicParams,
+                        // fullScreenSupported
+                    });
+                }
+                // only present after initial connection between window and app frame
+                if (embeddingId) {
+                    var frame = framesManager.getFrameById(embeddingId);
+                    if (frame) {
+                        // player app toggled FS
+                        if (eventType === PLAYER_EVENTS.TOGGLE_FS) {
+                            if (isFullScreenEnabled) toggleFullScreen(frame);
+                            else toggleFSOverlay(frame);
+                        }
+                        // listens to actuall FS changes and notifies player to change controls and relevant updates
+                        // fscreen.onfullscreenchange = createFrameFSHandler(
+                            //     frame
+                            // );
                             
-        //                 if(eventType === PLAYER_EVENTS.LOADED) {
-        //                     // const styles = window.getComputedStyle(frame.nextElementSibling);
-        //                     // if(styles.transition != "opacity 0.5s ease 0s") {
-        //                     //     frame.nextElementSibling.style.transition = "opacity 0.5s ease 0s";
-        //                     // }
-        //                     frame.nextElementSibling.style.opacity = 0;
-        //                     frame.nextElementSibling.addEventListener( 
-        //                         'webkitTransitionEnd', 
-        //                         function( event ) { 
-        //                             frame.nextElementSibling.style.zIndex = -1;
-        //                         }, false );
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-        // /** @param {HTMLIFrameElement} frame */
+                        if(eventType === PLAYER_EVENTS.LOADED) {
+                            // const styles = window.getComputedStyle(frame.nextElementSibling);
+                            // if(styles.transition != "opacity 0.5s ease 0s") {
+                            //     frame.nextElementSibling.style.transition = "opacity 0.5s ease 0s";
+                            // }
+                            frame.nextElementSibling.style.opacity = 0;
+                            frame.nextElementSibling.addEventListener( 
+                                'webkitTransitionEnd', 
+                                function( event ) { 
+                                    frame.nextElementSibling.style.zIndex = -1;
+                                }, false );
+                        }
+                    }
+                }
+            }
+        }
+        /** @param {HTMLIFrameElement} frame */
 
         // const styles = {
         //     position: 'fixed',
