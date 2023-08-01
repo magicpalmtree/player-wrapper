@@ -144,17 +144,17 @@ import './style.css'
         //  * ⚡️ requires `URLSEARCHParams` pollyfill cause a bunch of browsers don't support it yet
         //  * @returns {object} the dynamicParams object
         //  */
-        // function getDynamicTextParameters() {
-        //     var searchQuery = document.location.search;
-        //     var dynamicParams = {};
-        //     if (typeof searchQuery == 'string') {
-        //         var urlParamsObj = new URLSearchParams(searchQuery);
-        //         for (var entry of urlParamsObj.entries()) {
-        //             dynamicParams[entry[0]] = entry[1];
-        //         }
-        //     }
-        //     return dynamicParams;
-        // }
+        function getDynamicTextParameters() {
+            var searchQuery = document.location.search;
+            var dynamicParams = {};
+            if (typeof searchQuery == 'string') {
+                var urlParamsObj = new URLSearchParams(searchQuery);
+                for (var entry of urlParamsObj.entries()) {
+                    dynamicParams[entry[0]] = entry[1];
+                }
+            }
+            return dynamicParams;
+        }
     }
     if (document.readyState === 'loading') {
         // Loading hasn't finished yet
