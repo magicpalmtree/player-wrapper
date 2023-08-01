@@ -51,16 +51,16 @@ import './style.css'
             });
         }
 
-        // // expose this function , use case here being manually calling this in cases
-        // // where dom is being manually injected like in the editing mode from interactr app
-        // window.__ictr_run_wrapper = run;
+        // expose this function , use case here being manually calling this in cases
+        // where dom is being manually injected like in the editing mode from interactr app
+        window.__ictr_run_wrapper = run;
 
-        // const framesManager = new FramesManager();
+        const framesManager = new FramesManager();
 
-        // var dynamicParams = getDynamicTextParameters();
-        // // Events comming from inside the player iframes
-        // console.log('addEventListener handleIncomingPlayerMsg');
-        // window.addEventListener('message', handleIncomingPlayerMsg);
+        var dynamicParams = getDynamicTextParameters();
+        // Events comming from inside the player iframes
+        console.log('addEventListener handleIncomingPlayerMsg');
+        //window.addEventListener('message', handleIncomingPlayerMsg);
 
         // //TODO clean this up from app side as well
         // function handleIncomingPlayerMsg(e) {
