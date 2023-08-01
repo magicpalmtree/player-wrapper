@@ -17,39 +17,39 @@ import './style.css'
         if (window.__ictr_wrpr_check__) return;
         window.__ictr_wrpr_check__ = true;
 
-        var projects = document.querySelectorAll('[data-hash]');
-        if (projects.length > 0) { 
-            projects.forEach((node) => {
-                if(node.querySelector("iframe"))
-                    return;
+        // var projects = document.querySelectorAll('[data-hash]');
+        // if (projects.length > 0) { 
+        //     projects.forEach((node) => {
+        //         if(node.querySelector("iframe"))
+        //             return;
 
-                const iframe = document.createElement('iframe');
-                const isPreview = node.getAttribute("data-context") == "preview" ? true : false;
+        //         const iframe = document.createElement('iframe');
+        //         const isPreview = node.getAttribute("data-context") == "preview" ? true : false;
                 
-                if(isPreview) {
-                    const apiUrl = node.getAttribute('api-url');
-                    const analyticsUrl = node.getAttribute('analytics-url');
-                    const projectId = node.getAttribute('project-id');
-                    const previewNodeId = node.getAttribute('preview-node-id') ? node.getAttribute('preview-node-id') : false;
-                    iframe.src=`${import.meta.env.VITE_PLAYER_URL}/?context=preview&projectId=${projectId}&apiUrl=${apiUrl}&analyticsUrl=${analyticsUrl}&appEnv=${import.meta.env.VITE_APP_ENV}&previewNodeId=${previewNodeId}`;
-                } else {
-                    const hash = node.getAttribute('data-hash');
-                    iframe.src=`${import.meta.env.VITE_PLAYER_URL}/?hash=${hash}&apiUrl=${import.meta.env.VITE_API_URL}&analyticsUrl=${import.meta.env.VITE_ANALYTICS_URL}&appEnv=${import.meta.env.VITE_APP_ENV}`;
-                }
-                //iframe.src = "https://p-fast.b-cdn.net/player/staging/37/index.html"
-                // iframe.src="http://bs-local.com/pdq/?apiUrl=http://bs-local.com:8000&context=preview&projectid=24668&analyticsUrl=http://bs-local.com:8080";
-                //iframe.contentWindow.playerData = window['pdqplyr-6087b1f399f4f'];
-                iframe.width = '100%';
-                iframe.height = '100%';
-                iframe.frameBorder = "none"
-                iframe.classList.add(CLASSES.PLAYER);
+        //         if(isPreview) {
+        //             const apiUrl = node.getAttribute('api-url');
+        //             const analyticsUrl = node.getAttribute('analytics-url');
+        //             const projectId = node.getAttribute('project-id');
+        //             const previewNodeId = node.getAttribute('preview-node-id') ? node.getAttribute('preview-node-id') : false;
+        //             iframe.src=`${import.meta.env.VITE_PLAYER_URL}/?context=preview&projectId=${projectId}&apiUrl=${apiUrl}&analyticsUrl=${analyticsUrl}&appEnv=${import.meta.env.VITE_APP_ENV}&previewNodeId=${previewNodeId}`;
+        //         } else {
+        //             const hash = node.getAttribute('data-hash');
+        //             iframe.src=`${import.meta.env.VITE_PLAYER_URL}/?hash=${hash}&apiUrl=${import.meta.env.VITE_API_URL}&analyticsUrl=${import.meta.env.VITE_ANALYTICS_URL}&appEnv=${import.meta.env.VITE_APP_ENV}`;
+        //         }
+        //         //iframe.src = "https://p-fast.b-cdn.net/player/staging/37/index.html"
+        //         // iframe.src="http://bs-local.com/pdq/?apiUrl=http://bs-local.com:8000&context=preview&projectid=24668&analyticsUrl=http://bs-local.com:8080";
+        //         //iframe.contentWindow.playerData = window['pdqplyr-6087b1f399f4f'];
+        //         iframe.width = '100%';
+        //         iframe.height = '100%';
+        //         iframe.frameBorder = "none"
+        //         iframe.classList.add(CLASSES.PLAYER);
 
-                const thumbnail = node.getElementsByClassName('iv-player_embed')[0];
-                thumbnail.prepend(iframe);
-                thumbnail.lastElementChild.style.transition = "opacity 0.5s ease 0s";
-                thumbnail.lastElementChild.style.opacity = 1;
-            });
-        }
+        //         const thumbnail = node.getElementsByClassName('iv-player_embed')[0];
+        //         thumbnail.prepend(iframe);
+        //         thumbnail.lastElementChild.style.transition = "opacity 0.5s ease 0s";
+        //         thumbnail.lastElementChild.style.opacity = 1;
+        //     });
+        // }
 
         // // expose this function , use case here being manually calling this in cases
         // // where dom is being manually injected like in the editing mode from interactr app
