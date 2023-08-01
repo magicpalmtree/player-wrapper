@@ -120,25 +120,25 @@ import './style.css'
         //     zIndex: '99999999'
         // };
 
-        // function toggleFSOverlay(frame) {
-        //     const fsOverlay = 'fullscreen-overlay'
-        //     const classList = frame.classList;
-        //     if (classList.contains(fsOverlay)) {
-        //         frame.classList.remove(fsOverlay);
-        //         frame.style.position = '';
-        //         frame.style.top = '';
-        //         frame.style.left = '';
-        //         frame.style.width = '';
-        //         frame.style.height = '';
-        //         frame.style.zIndex = '';
-        //     } else {
-        //         frame.classList.add(fsOverlay);
-        //         Object.assign(frame.style, styles);
-        //     }
-        //     notifyPlayer(frame, WRAPPER_EVENTS.FS_ENABLED, {
-        //         fullScreenEnabled: classList.contains(fsOverlay) ? true : false
-        //     });
-        // }
+        function toggleFSOverlay(frame) {
+            const fsOverlay = 'fullscreen-overlay'
+            const classList = frame.classList;
+            if (classList.contains(fsOverlay)) {
+                frame.classList.remove(fsOverlay);
+                frame.style.position = '';
+                frame.style.top = '';
+                frame.style.left = '';
+                frame.style.width = '';
+                frame.style.height = '';
+                frame.style.zIndex = '';
+            } else {
+                frame.classList.add(fsOverlay);
+                Object.assign(frame.style, styles);
+            }
+            notifyPlayer(frame, WRAPPER_EVENTS.FS_ENABLED, {
+                fullScreenEnabled: classList.contains(fsOverlay) ? true : false
+            });
+        }
 
         // /** returns all the parameters in a searchquery in a normal object
         //  * ⚡️ requires `URLSEARCHParams` pollyfill cause a bunch of browsers don't support it yet
