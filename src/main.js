@@ -111,14 +111,14 @@ import './style.css'
         }
         /** @param {HTMLIFrameElement} frame */
 
-        // const styles = {
-        //     position: 'fixed',
-        //     top: 0,
-        //     left:0,
-        //     width: '100%',
-        //     height : '100%',
-        //     zIndex: '99999999'
-        // };
+        const styles = {
+            position: 'fixed',
+            top: 0,
+            left:0,
+            width: '100%',
+            height : '100%',
+            zIndex: '99999999'
+        };
 
         function toggleFSOverlay(frame) {
             const fsOverlay = 'fullscreen-overlay'
