@@ -53,108 +53,108 @@ import './style.css'
 
         // // expose this function , use case here being manually calling this in cases
         // // where dom is being manually injected like in the editing mode from interactr app
-        window.__ictr_run_wrapper = run;
+        // window.__ictr_run_wrapper = run;
 
-        const framesManager = new FramesManager();
+        // const framesManager = new FramesManager();
 
-        var dynamicParams = getDynamicTextParameters();
-        // Events comming from inside the player iframes
-        console.log('addEventListener handleIncomingPlayerMsg');
-        window.addEventListener('message', handleIncomingPlayerMsg);
+        // var dynamicParams = getDynamicTextParameters();
+        // // Events comming from inside the player iframes
+        // console.log('addEventListener handleIncomingPlayerMsg');
+        // window.addEventListener('message', handleIncomingPlayerMsg);
 
-        //TODO clean this up from app side as well
-        function handleIncomingPlayerMsg(e) {
-            console.log('handleIncomingPlayerMsg')
-            // make sure event is from our player(s) and not some other iframe
-            // all events from player app should have a "from" property
-            if (typeof e.data === 'object' && e.data.from === ICTR_PLAYER) {
-                console.log('received event from app iframe .......', e.data)
+        // //TODO clean this up from app side as well
+        // function handleIncomingPlayerMsg(e) {
+        //     console.log('handleIncomingPlayerMsg')
+        //     // make sure event is from our player(s) and not some other iframe
+        //     // all events from player app should have a "from" property
+        //     if (typeof e.data === 'object' && e.data.from === ICTR_PLAYER) {
+        //         console.log('received event from app iframe .......', e.data)
 
-                var { eventType, embeddingId } = e.data;
+        //         var { eventType, embeddingId } = e.data;
 
-                // fired when player app mounts and is ready 🚀
-                if (eventType === PLAYER_EVENTS.READY) {
-                    framesManager.sendInitInfo({
-                        dynamicParams,
-                        // fullScreenSupported
-                    });
-                }
-                // only present after initial connection between window and app frame
-                if (embeddingId) {
-                    var frame = framesManager.getFrameById(embeddingId);
-                    if (frame) {
-                        // player app toggled FS
-                        if (eventType === PLAYER_EVENTS.TOGGLE_FS) {
-                            if (isFullScreenEnabled) toggleFullScreen(frame);
-                            else toggleFSOverlay(frame);
-                        }
-                        // listens to actuall FS changes and notifies player to change controls and relevant updates
-                        // fscreen.onfullscreenchange = createFrameFSHandler(
-                            //     frame
-                            // );
+        //         // fired when player app mounts and is ready 🚀
+        //         if (eventType === PLAYER_EVENTS.READY) {
+        //             framesManager.sendInitInfo({
+        //                 dynamicParams,
+        //                 // fullScreenSupported
+        //             });
+        //         }
+        //         // only present after initial connection between window and app frame
+        //         if (embeddingId) {
+        //             var frame = framesManager.getFrameById(embeddingId);
+        //             if (frame) {
+        //                 // player app toggled FS
+        //                 if (eventType === PLAYER_EVENTS.TOGGLE_FS) {
+        //                     if (isFullScreenEnabled) toggleFullScreen(frame);
+        //                     else toggleFSOverlay(frame);
+        //                 }
+        //                 // listens to actuall FS changes and notifies player to change controls and relevant updates
+        //                 // fscreen.onfullscreenchange = createFrameFSHandler(
+        //                     //     frame
+        //                     // );
                             
-                        if(eventType === PLAYER_EVENTS.LOADED) {
-                            // const styles = window.getComputedStyle(frame.nextElementSibling);
-                            // if(styles.transition != "opacity 0.5s ease 0s") {
-                            //     frame.nextElementSibling.style.transition = "opacity 0.5s ease 0s";
-                            // }
-                            frame.nextElementSibling.style.opacity = 0;
-                            frame.nextElementSibling.addEventListener( 
-                                'webkitTransitionEnd', 
-                                function( event ) { 
-                                    frame.nextElementSibling.style.zIndex = -1;
-                                }, false );
-                        }
-                    }
-                }
-            }
-        }
-        /** @param {HTMLIFrameElement} frame */
+        //                 if(eventType === PLAYER_EVENTS.LOADED) {
+        //                     // const styles = window.getComputedStyle(frame.nextElementSibling);
+        //                     // if(styles.transition != "opacity 0.5s ease 0s") {
+        //                     //     frame.nextElementSibling.style.transition = "opacity 0.5s ease 0s";
+        //                     // }
+        //                     frame.nextElementSibling.style.opacity = 0;
+        //                     frame.nextElementSibling.addEventListener( 
+        //                         'webkitTransitionEnd', 
+        //                         function( event ) { 
+        //                             frame.nextElementSibling.style.zIndex = -1;
+        //                         }, false );
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        // /** @param {HTMLIFrameElement} frame */
 
-        const styles = {
-            position: 'fixed',
-            top: 0,
-            left:0,
-            width: '100%',
-            height : '100%',
-            zIndex: '99999999'
-        };
+        // const styles = {
+        //     position: 'fixed',
+        //     top: 0,
+        //     left:0,
+        //     width: '100%',
+        //     height : '100%',
+        //     zIndex: '99999999'
+        // };
 
-        function toggleFSOverlay(frame) {
-            const fsOverlay = 'fullscreen-overlay'
-            const classList = frame.classList;
-            if (classList.contains(fsOverlay)) {
-                frame.classList.remove(fsOverlay);
-                frame.style.position = '';
-                frame.style.top = '';
-                frame.style.left = '';
-                frame.style.width = '';
-                frame.style.height = '';
-                frame.style.zIndex = '';
-            } else {
-                frame.classList.add(fsOverlay);
-                Object.assign(frame.style, styles);
-            }
-            notifyPlayer(frame, WRAPPER_EVENTS.FS_ENABLED, {
-                fullScreenEnabled: classList.contains(fsOverlay) ? true : false
-            });
-        }
+        // function toggleFSOverlay(frame) {
+        //     const fsOverlay = 'fullscreen-overlay'
+        //     const classList = frame.classList;
+        //     if (classList.contains(fsOverlay)) {
+        //         frame.classList.remove(fsOverlay);
+        //         frame.style.position = '';
+        //         frame.style.top = '';
+        //         frame.style.left = '';
+        //         frame.style.width = '';
+        //         frame.style.height = '';
+        //         frame.style.zIndex = '';
+        //     } else {
+        //         frame.classList.add(fsOverlay);
+        //         Object.assign(frame.style, styles);
+        //     }
+        //     notifyPlayer(frame, WRAPPER_EVENTS.FS_ENABLED, {
+        //         fullScreenEnabled: classList.contains(fsOverlay) ? true : false
+        //     });
+        // }
 
-        /** returns all the parameters in a searchquery in a normal object
-         * ⚡️ requires `URLSEARCHParams` pollyfill cause a bunch of browsers don't support it yet
-         * @returns {object} the dynamicParams object
-         */
-        function getDynamicTextParameters() {
-            var searchQuery = document.location.search;
-            var dynamicParams = {};
-            if (typeof searchQuery == 'string') {
-                var urlParamsObj = new URLSearchParams(searchQuery);
-                for (var entry of urlParamsObj.entries()) {
-                    dynamicParams[entry[0]] = entry[1];
-                }
-            }
-            return dynamicParams;
-        }
+        // /** returns all the parameters in a searchquery in a normal object
+        //  * ⚡️ requires `URLSEARCHParams` pollyfill cause a bunch of browsers don't support it yet
+        //  * @returns {object} the dynamicParams object
+        //  */
+        // function getDynamicTextParameters() {
+        //     var searchQuery = document.location.search;
+        //     var dynamicParams = {};
+        //     if (typeof searchQuery == 'string') {
+        //         var urlParamsObj = new URLSearchParams(searchQuery);
+        //         for (var entry of urlParamsObj.entries()) {
+        //             dynamicParams[entry[0]] = entry[1];
+        //         }
+        //     }
+        //     return dynamicParams;
+        // }
     }
     if (document.readyState === 'loading') {
         // Loading hasn't finished yet
