@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Video Player</title>
+  </head>
+  <body>
+    <div
+      style="width: 700px; height:500px; overflow: hidden;"
+    >
+      <div
+        class="iv-player_responsive_padding"
+        style="padding: 56.25% 0 0 0; position: relative"
+        data-hash="63b84b6c6cc5a"
+        data-context="preview"
+        api-url="https://videosuite.app"
+        analytics-url="https://api.vidanalytics.io"
+        project-id="7"
+      >
+        <div
+          class="iv-player_responsive_wrapper"
+          style="height: 100%; left: 0; position: absolute; top: 0; width: 100%"
+        >
+          <div
+            class="iv-player_embed iv-player_async_p2z7746nud videoFoam=true"
+            style="height: 100%; position: relative; width: 100%"
+          >
+            <div
+              class="iv-player_swatch"
+              style="
+                height: 100%;
+                left: 0;
+                opacity: 0;
+                overflow: hidden;
+                position: absolute;
+                top: 0;
+                /* transition: opacity 500ms; */
+                width: 100%;
+              "
+            >
+              <img
+                src="https://i-fast.b-cdn.net/l/1/1_609e8d42ec856.png"
+                style="
+                  filter: blur(5px);
+                  height: 100%;
+                  object-fit: contain;
+                  width: 100%;
+                "
+                alt=""
+                aria-hidden="true"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
