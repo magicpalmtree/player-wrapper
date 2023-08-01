@@ -109,17 +109,7 @@ import './style.css'
                 }
             }
         }
-        /** @param {HTMLIFrameElement} frame */
-
-        // const styles = {
-        //     position: 'fixed',
-        //     top: 0,
-        //     left:0,
-        //     width: '100%',
-        //     height : '100%',
-        //     zIndex: '99999999'
-        // };
-
+        
         function toggleFSOverlay(frame) {
             const fsOverlay = 'fullscreen-overlay'
             const classList = frame.classList;
@@ -133,7 +123,14 @@ import './style.css'
                 frame.style.zIndex = '';
             } else {
                 frame.classList.add(fsOverlay);
-                Object.assign(frame.style, styles);
+                Object.assign(frame.style, {
+                    position: 'fixed',
+                    top: 0,
+                    left:0,
+                    width: '100%',
+                    height : '100%',
+                    zIndex: '99999999'
+                });
             }
             notifyPlayer(frame, WRAPPER_EVENTS.FS_ENABLED, {
                 fullScreenEnabled: classList.contains(fsOverlay) ? true : false
